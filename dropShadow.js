@@ -7,12 +7,16 @@ let prevValue = {
 };
 let prevStyle = "";
 
-export const createDropShadow = ({ deltaX, deltaY, el }) => {
+/**
+ * DONT use css transition on filter, its sluggy on Chrome
+ */
+
+export const animateDropShadow = ({ deltaX, deltaY, el }) => {
   const color = "#ff8080";
   const max = 50;
 
-  deltaX = Math.ceil(deltaX);
-  deltaY = Math.ceil(deltaY);
+  deltaX = round(Math.ceil(deltaX / 8), 1);
+  deltaY = round(Math.ceil(deltaY / 8), 1);
 
   const deltaXBigger = Math.abs(deltaX) > Math.abs(deltaY);
   let biggerDelta = Math.abs(deltaXBigger ? deltaX : deltaY);
@@ -38,8 +42,6 @@ export const createDropShadow = ({ deltaX, deltaY, el }) => {
   prevValue.smallerDelta = smallerDelta;
   prevValue.stagger = stagger;
   prevValue.biggerDelta = biggerDelta;
-
-  // console.log({ biggerDelta, smallerDelta, stagger, steps });
 
   const xStarting = Math.sign(deltaX);
   const yStarting = Math.sign(deltaY);

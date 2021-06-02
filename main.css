@@ -7,15 +7,16 @@ body {
   background: #000;
 }
 
-.filter {
+.filter,
+.duplicated {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1000px;
+  height: 800px;
+  background: #eee;
 }
 
-svg {
-}
-
-code {
+svg.active .shadow {
+  fill: #ff8080;
+  transition: transform 250ms;
 }
